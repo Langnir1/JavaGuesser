@@ -17,7 +17,7 @@ public class guesser{
 			System.out.print("What would you like to do? ");
 
 			String choice = input.nextLine();
-			System.out.println("Test: " + choice);
+			//System.out.println("Test: " + choice);
 			
 			if(choice.equals("0")){
 				System.out.println("Bye!");
@@ -25,13 +25,13 @@ public class guesser{
 			}
 
 			else if(choice.equals("1")){
-				System.out.println("Test response, get rid of later");
+			//	System.out.println("Test response, get rid of later");
 				humanGuesser();
 			}
 
 			else if(choice.equals("2")){
-				System.out.println("Test for computerGuesser");
-				//computerGuesser();
+			//	System.out.println("Test for computerGuesser");
+				computerGuesser();
 			}
 			else{
 				System.out.println("Please pick an acceptable response");
@@ -45,7 +45,7 @@ public class guesser{
 		boolean keepGoing = true;
 		
 		int number = (int)(Math.random() * 101);
-		System.out.println(number);
+		//System.out.println(number);
 		int count = 1;
 		
 		while(keepGoing){
@@ -69,6 +69,37 @@ public class guesser{
 			else{
 				System.out.println("Congradulations! You got it in " + count + " tries!");
 				keepGoing = false;
+			}
+		}
+	}
+
+	public static void computerGuesser(){
+		Scanner input = new Scanner(System.in);
+		boolean keepGoing = true;
+		int lower = 1;
+		int upper = 100;
+		int randNum = (int)(Math.random() * (upper - lower + 1) + lower);
+
+		while(keepGoing){
+			System.out.println("Computers Guess: " + randNum);
+
+			System.out.print("Is the number (L)ow, (H)igh, (C)orrect: \n");
+			String response = input.nextLine();
+
+			if(response.equals("L")){
+				lower = randNum + 1;
+				randNum = (int)(Math.random() * (upper - lower + 1) + lower);
+			}
+			else if(response.equals("H")){
+				upper = randNum - 1;
+				randNum = (int)(Math.random() * (upper - lower + 1) + lower);
+			}
+			else if(response.equals("C")){
+				System.out.println("Congradulations, the number was indeed " + randNum);
+				keepGoing = false;
+			}
+			else{
+				System.out.println("Try a different input");
 			}
 		}
 	}
